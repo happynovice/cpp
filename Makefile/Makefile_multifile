@@ -1,0 +1,24 @@
+file=185
+file1=count
+#$(file):$(file).o
+#       g++ -o  $(file) $(file).o
+#$(file).o:$(file).cpp
+#       g++ -c -std=c++11 $(file).cpp
+
+
+$(file):$(file1).o $(file).o
+        g++ -o $(file) $(file1).o $(file).o
+$(file1).o:$(file1).cpp
+        g++ -c -std=c++11 $(file1).cpp 
+$(file).o:$(file).cpp
+        g++ -c -std=c++11 $(file).cpp 
+clean:
+        #echo "wildcard $(CURDIR)/*.o"
+        
+        #echo "$(wildcard $(CURDIR)/*.o)"
+#ifeq ("$(wildcard $(CURDIR)/$(file).o)","")
+ifeq ("$(wildcard $(CURDIR)/*.o)","")
+        echo "file not exists"
+else
+        rm $(file).o  $(file1).o
+endif
